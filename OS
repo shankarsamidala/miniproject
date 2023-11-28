@@ -1,0 +1,109 @@
+awk '{
+    sum = 0;
+    for (i = 2; i <= NF; i++) {
+        sum += $i;
+    }
+    avg = sum / (NF - 1);
+    printf("Student: %s, Sum: %d, Avg: %.2f\n", $1, sum, avg);
+}' file.txt
+
+
+2)#!/bin/bash
+
+echo -n "Enter the score for Exam 1: "
+read score1
+
+echo -n "Enter the score for Exam 2: "
+read score2
+
+echo -n "Enter the score for Exam 3: "
+read score3
+
+# Calculate total and average
+total=$((score1 + score2 + score3))
+average=$((total / 3))
+
+echo "Total Score: $total"
+echo "Average Score: $average"
+
+# Assign grade based on average
+if [ $average -ge 80 ]; then
+    echo "Grade: A"
+elif [ $average -ge 70 ]; then
+    echo "Grade: B"
+elif [ $average -ge 60 ]; then
+    echo "Grade: C"
+elif [ $average -ge 50 ]; then
+    echo "Grade: D"
+elif [ $average -ge 40 ]; then
+    echo "Grade: E"
+else
+    echo "Grade: F (Fail)"
+fi
+
+
+
+3)
+
+#!/bin/bash
+
+echo -n "Enter a string: "
+read input
+
+# Remove spaces and convert to lowercase for case-insensitive comparison
+cleaned_input=$(echo "$input" | tr -d ' ' | tr '[:upper:]' '[:lower:]')
+
+# Reverse the string
+reversed_input=$(echo "$cleaned_input" | rev)
+
+# Check if the original and reversed strings are the same
+if [ "$cleaned_input" == "$reversed_input" ]; then
+    echo "Palindrome!"
+else
+    echo "Not a palindrome."
+fi
+
+
+#!/bin/bash
+
+echo -n "Enter a number: "
+read input
+
+# Convert number to string
+input_str="$input"
+
+# Reverse the string
+reversed_input=$(echo "$input_str" | rev)
+
+# Check if the original and reversed strings are the same
+if [ "$input_str" == "$reversed_input" ]; then
+    echo "Palindrome!"
+else
+    echo "Not a palindrome."
+fi
+
+
+4)
+#!/bin/bash
+
+filename="file.txt"
+
+while IFS= read -r line; do
+    char_count=$(echo -n "$line" | wc -c)
+    word_count=$(echo "$line" | awk '{print NF}')
+
+    echo "Line: $line"
+    echo "Character Count: $char_count"
+    echo "Word Count: $word_count"
+    echo "-------------------"
+done < "$filename"
+
+
+samplefile)
+
+
+John 85 29 78
+Alice 92 88 95
+Bob 75 80 68
+
+
